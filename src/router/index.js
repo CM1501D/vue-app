@@ -7,6 +7,8 @@ import MessageList from '@/page/MessageList'
 import HistoryList from '@/page/HistoryList'
 import Login from '@/page/Login'
 
+
+console.log(Home)
 Vue.use(Router)
 
 var router = new Router({

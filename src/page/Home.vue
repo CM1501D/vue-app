@@ -13,6 +13,7 @@
         <Slider :message='picData'></Slider>
         <button @click = 'changeNum'>click me</button>
         <span>{{this.$store.state.status.count}}</span>
+        <div style='margin-top:30px;'><input type="text" v-focus></div>
     </div>
 </template>
 <script>
@@ -57,6 +58,16 @@
                    break;
                }
            } 
+        },
+        directives:{  //自定义指令的生命周期：
+            focus:{
+                bind(el,binding,vnode){
+                    console.log(vnode)
+                },
+                inserted(el){
+                    el.focus()
+                }
+            }
         }
     }
 </script>
