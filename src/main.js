@@ -18,7 +18,7 @@ Vue.component(SliderItem.name, SliderItem)
 
 
 /* eslint-disable no-new */
-new Vue({
+var vue = new Vue({
   el: '#app',
   router,
   store,
@@ -26,4 +26,4 @@ new Vue({
   template: '<App/>'
 })
 
-
+console.log(vue)
