@@ -13,7 +13,9 @@
         <Slider :message='picData'></Slider>
         <button @click = 'changeNum'>click me</button>
         <span>{{this.$store.state.status.count}}</span>
-        <div style='margin-top:30px;'><input type="text" v-focus></div>
+        <div style='margin-top:30px;'>
+            <input type="text" v-focus v-model='this.changeNum'>
+        </div>
     </div>
 </template>
 <script>
@@ -21,7 +23,7 @@
     export default {
         name: 'Home',
         mounted(){
-            console.log(this)
+            // console.log(this)
         },
         components:{ 
             Slider
@@ -35,8 +37,22 @@
                     '../assets/2.jpg',
                     '../assets/3.jpg'
                 ],
-                activeIndex:0
+                activeIndex:0,
+                number:5,
+                num:3
             }
+        },
+        watch:{
+            number:{
+                handler(newVal,oldVal){
+                    console.log(newVal,oldVal);
+                }
+            }
+        },
+        computed:{
+            // changeNum(){
+            //     return this.number += this.num;
+            // }
         },
         methods:{
            changeNum(){
