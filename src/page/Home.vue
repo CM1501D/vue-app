@@ -11,19 +11,23 @@
             </span>
         </nav>
         <Slider :message='picData'></Slider>
-        <button @click = 'changeNum'>click me</button>
+        <button @click = 'changeFn'>click me</button>
         <span>{{this.$store.state.status.count}}</span>
         <div style='margin-top:30px;'>
-            <input type="text" v-focus v-model='this.changeNum'>
+            <input type="text" v-focus v-model='this.obj.count'>
         </div>
     </div>
 </template>
 <script>
     import Slider from '../components/Slider'
+import { setTimeout } from 'timers';
     export default {
         name: 'Home',
         mounted(){
             // console.log(this)
+        },
+        updated(){
+            alert('数据更新了');
         },
         components:{ 
             Slider
@@ -39,14 +43,19 @@
                 ],
                 activeIndex:0,
                 number:5,
-                num:3
+                num:3,
+                obj:{
+                    count:0
+                }
             }
         },
         watch:{
-            number:{
+            obj:{
                 handler(newVal,oldVal){
-                    console.log(newVal,oldVal);
-                }
+                    alert('我知道你加了1了');
+                    console.log('我改变后的值是'+newVal.count);
+                },
+                deep:true
             }
         },
         computed:{
@@ -55,6 +64,13 @@
             // }
         },
         methods:{
+           changeFn(){
+               alert('3秒后我将会加1');
+               setTimeout(() => {
+                   this.obj.count ++
+               },3000)
+               
+           },
            changeNum(){
                this.$store.dispatch('addCount',1);
            },
