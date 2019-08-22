@@ -11,16 +11,20 @@
             </span>
         </nav>
         <Slider :message='picData'></Slider>
+
         <button @click = 'changeFn'>click me</button>
         <span>{{this.$store.state.status.count}}</span>
+        <!--watch属性和computed属性-->
         <div style='margin-top:30px;'>
             <input type="text" v-focus v-model='this.obj.count'>
         </div>
+        <!--过滤器-->
+        <div><span>{{message | filterA}}</span></div>
     </div>
 </template>
 <script>
     import Slider from '../components/Slider'
-import { setTimeout } from 'timers';
+    import { setTimeout } from 'timers'
     export default {
         name: 'Home',
         mounted(){
@@ -46,7 +50,8 @@ import { setTimeout } from 'timers';
                 num:3,
                 obj:{
                     count:0
-                }
+                },
+                message:'12345678'
             }
         },
         watch:{
@@ -62,6 +67,13 @@ import { setTimeout } from 'timers';
             // changeNum(){
             //     return this.number += this.num;
             // }
+        },
+        filters:{
+            filterA(value){
+               return value.split('').filter((item,index)=>{
+                   return item>5
+               }).join('')
+            }
         },
         methods:{
            changeFn(){
